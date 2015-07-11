@@ -1,6 +1,6 @@
 #!/bin/bash
 source colors.sh
-./edgerc.s
+./edgerc.sh
 for SCRIPT in ./enabled/*; 
 do
 	TEST=$(grep -F 'Test: ' ./available/run-user-admin.py | sed 's/# Test: //')

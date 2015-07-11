@@ -3,7 +3,7 @@ source colors.sh
 ./edgerc.sh
 for SCRIPT in ./enabled/*; 
 do
-	TEST=$(grep -F 'Test: ' ./available/run-user-admin.py | sed 's/# Test: //')
+	TEST=$(grep '# Test: ' $SCRIPT | sed 's/# Test: //')
 	printf "${YELLOW}TEST:${RESET} ${TEST}\n"
 	echo "========================================================="
 	$SCRIPT

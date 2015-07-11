@@ -1,7 +1,7 @@
 #!/bin/bash
 source colors.sh
 ./edgerc.sh
-RETURN=0
+export RETURN=0
 for SCRIPT in ./enabled/*; 
 do
 	START_DIR=$(pwd)
@@ -15,7 +15,7 @@ do
 	cd $START_DIR
 	if [[ ! $RESULT -eq 0 ]]
 	then
-		RETURN=1
+		export RETURN=1
 	fi
 done;
 exit $RETURN

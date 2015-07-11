@@ -1,6 +1,6 @@
 #!/bin/bash
 # Test: Python: Diagnostic Tools Test
-cd examples/python
+cd $PYTHON_EXAMPLE_DIR
 echo "" > test/error
 python diagnostic_tools.py > test/output 2> test/error
 if [[ ! $? -eq 0 ]]

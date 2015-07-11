@@ -1,6 +1,6 @@
 #!/bin/bash
 # Test: Python: Run Network Lists Tests
-cd examples/python
+cd $PYTHON_EXAMPLE_DIR
 echo "" > test/error
 python network-lists.py > test/output 2> test/error
 if [[ ! $? -eq 0 ]]

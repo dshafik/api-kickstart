@@ -1,6 +1,6 @@
 #!/bin/bash
 # Test: Python: Run CCU (purge) Test
-cd examples/python
+cd $PYTHON_EXAMPLE_DIR
 echo "" > test/error
 python ccu.py > test/output 2> test/error
 if [[ ! $? -eq 0 ]]

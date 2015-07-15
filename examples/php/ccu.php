@@ -24,9 +24,9 @@ class CcuClient
 	 */
 	protected $client;
 
-	public function __construct()
+	public function __construct($client)
 	{
-		$this->client = \Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile('ccu');
+		$this->client = $client;
 	}
 
 	public function getQueue()
@@ -58,7 +58,16 @@ class CcuClient
 	}
 }
 
-$ccu = new CcuClient();
+$client = \Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile('ccu');
+if ($cli->arguments->get('debug')) {
+	$client->setDebug(true);
+}
+
+if ($cli->arguments->get('verbose')) {
+	$client->setVerbose(true);
+}
+
+$ccu = new CcuClient($client);
 $ccu->getQueue();
 $purge= $ccu->postPurgeRequest();
 $progress = $ccu->checkProgress(json_decode($purge->getBody())->progressUri);

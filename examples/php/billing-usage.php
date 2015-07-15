@@ -44,9 +44,9 @@ class BillingUsageClient
 	 */
 	protected $client;
 
-	public function __construct()
+	public function __construct($client)
 	{
-		$this->client = \Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile('billingusage');
+		$this->client = $client;
 	}
 
 	public function  getReportSources()
@@ -130,9 +130,19 @@ class BillingUsageClient
  * by getReportSources
  * You could loop through them here, or just get one big kahuna report and chunk it up yourself
  */
-$client = new BillingUsageClient();
 
-$reportSource = $client->getReportSources();
+$client = \Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile('billingusage');
+if ($cli->arguments->get('debug')) {
+	$client->setDebug(true);
+}
+
+if ($cli->arguments->get('verbose')) {
+	$client->setVerbose(true);
+}
+
+$ccu = new BillingUsageClient($client);
+
+$reportSource = $ccu->getReportSources();
 $contractId = $reportSource[0]->id;
 $reportType = $reportSource[0]->type;
 $measures = [];
@@ -155,14 +165,14 @@ $endDate = [
 	"year" => "2014"
 ];
 
-$products = $client->getProducts($source, $startDate, $endDate);
+$products = $ccu->getProducts($source, $startDate, $endDate);
 $productList = [];
 foreach ($products as $product) {
 	$productList[] = ["id" => $product->id];
-	$measures[$product->id] = $client->getMeasures($product->id, $startDate, $endDate, $source);
-	$statisticTypes = $client->getStatisticTypes($product->id, $startDate, $endDate, $source);
+	$measures[$product->id] = $ccu->getMeasures($product->id, $startDate, $endDate, $source);
+	$statisticTypes = $ccu->getStatisticTypes($product->id, $startDate, $endDate, $source);
 	foreach ($statisticTypes as $statisticType) {
-		echo $client->getMonthlyReport($product->id, $startDate, $statisticType->statisticType, $source) . "\n";
+		echo $ccu->getMonthlyReport($product->id, $startDate, $statisticType->statisticType, $source) . "\n";
 	}
 }
 
@@ -170,7 +180,7 @@ foreach ($products as $product) {
 /*
  * Get a CSV report for all products here, using the information we gathered above
  */
-$report = $client->getCsvReport($productList, $startDate, $endDate, $source);
+$report = $ccu->getCsvReport($productList, $startDate, $endDate, $source);
 echo $report . "\n";
 
 

@@ -4,6 +4,14 @@ require_once __DIR__ . '/cli/init.php';
 
 $client = Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile($configSection, $configFile);
 
+if ($cli->arguments->get('debug')) {
+    $client->setDebug(true);
+}
+
+if ($cli->arguments->get('verbose')) {
+    $client->setVerbose(true);
+}
+
 # Request locations that support the diagnostic-tools
 echo "Requesting locations that support the diagnostic-tools API.\n";
 

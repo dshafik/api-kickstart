@@ -70,14 +70,6 @@ if ($cli->arguments->get('help')) {
     exit;
 }
 
-if ($cli->arguments->get('debug')) {
-    \Akamai\Open\EdgeGrid\Client::setDebug(true);
-}
-
-if ($cli->arguments->get('verbose')) {
-    \Akamai\Open\EdgeGrid\Client::setVerbose(true);
-}
-
 $configFile = $cli->arguments->get('config');
 $configSection = $cli->arguments->get('section');
 

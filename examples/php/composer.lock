@@ -4,21 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d8a8f6b33ea55ec665ef887d6105e51d",
+    "hash": "5bcd116d1b1298eace0c7455107e6aba",
     "packages": [
         {
             "name": "akamai-open/edgegrid-client",
-            "version": "0.1.0",
+            "version": "dev-refactor",
             "source": {
                 "type": "git",
-                "url": "https://github.com/akamai-open/edgegrid-auth-php.git",
-                "reference": "29d214e2bcd0ee163940d335491e2715116ca686"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/akamai-open/edgegrid-auth-php/zipball/29d214e2bcd0ee163940d335491e2715116ca686",
-                "reference": "29d214e2bcd0ee163940d335491e2715116ca686",
-                "shasum": ""
+                "url": "/Users/dshafik/src/akamai-open/edgegrid-auth-php",
+                "reference": "269044109e27e3bb8af612a5956663be4fa8bf9f"
             },
             "require": {
                 "guzzlehttp/guzzle": "~6.0",
@@ -38,7 +32,11 @@
                     "Akamai\\Open\\EdgeGrid\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "GuzzleHttp\\Tests\\": "vendor/guzzlehttp/guzzle/tests"
+                }
+            },
             "license": [
                 "Apache-2.0"
             ],
@@ -55,7 +53,7 @@
                 "edgegrid",
                 "open"
             ],
-            "time": "2015-07-14 01:27:13"
+            "time": "2015-07-15 02:36:58"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -380,7 +378,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "akamai-open/edgegrid-client": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

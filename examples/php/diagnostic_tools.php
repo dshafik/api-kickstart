@@ -20,12 +20,12 @@
  */
 require_once __DIR__ . '/cli/init.php';
 
-$client = Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile($configSection, $configFile);
-
-# Request locations that support the diagnostic-tools
-echo "Requesting locations that support the diagnostic-tools API.\n";
-
 try {
+    $client = Akamai\Open\EdgeGrid\Client::createFromEdgeRcFile($configSection, $configFile);
+
+    # Request locations that support the diagnostic-tools
+    echo "Requesting locations that support the diagnostic-tools API.\n";
+    
     $response = $client->get('/diagnostic-tools/v1/locations');
     if ($response) {
         $result = json_decode($response->getBody());
